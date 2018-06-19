@@ -7,30 +7,35 @@
 #
 Kanban.Repo.insert!(%Kanban.Model.Board{
   title: "Blue Board",
+  position: 1,
   description: "Blue Board",
   color: "blue"
 })
 
 best = Kanban.Repo.insert!(%Kanban.Model.Board{
   title: "The Bests",
+  position: 2,
   description: "Go Brazil!!!",
   color: "green"
 })
 
 todo = Kanban.Repo.insert!(%Kanban.Model.List{
   title: "TODO",
+  position: 1,
   color: "orange",
   board_id: best.id
 })
 
 doing = Kanban.Repo.insert!(%Kanban.Model.List{
   title: "DOING",
+  position: 2,
   color: "green",
   board_id: best.id
 })
 
 done = Kanban.Repo.insert!(%Kanban.Model.List{
   title: "DONE",
+  position: 3,
   color: "blue",
   board_id: best.id
 })
