@@ -26,7 +26,7 @@ defmodule Kanban.Model.List do
     @required_fields ++ @optional_fields
   end
 
-  def create attrs do
+  def create(attrs) do
     %__MODULE__{}
     |> cast(attrs, updatable_fields())
     |> validate_required(@required_fields)
@@ -34,7 +34,7 @@ defmodule Kanban.Model.List do
     |> Repo.insert
   end
 
- def update id, attrs do
+ def update(id, attrs) do
     Repo.get(__MODULE__, id)
     |> cast(attrs, updatable_fields())
     |> validate_required(@required_fields)
@@ -42,7 +42,7 @@ defmodule Kanban.Model.List do
     |> Repo.update
   end
 
-  def change_position model, attrs do
+  def change_position(model, attrs) do
     board_id = Map.get(attrs, "board_id") || get_field(model, :board_id, 0)
     query_context = all() |> by(board_id: board_id)
     Position.set model, query_context, attrs
@@ -51,14 +51,12 @@ defmodule Kanban.Model.List do
   def delete(id, attrs \\ %{}) do
     move_to = Map.get attrs, "move_to"
     IO.puts move_to
-    if (move_to != nil) do
-      Model.Card.move_to_list(id, move_to)
-    end
+    if move_to != nil, do: Model.Card.move_to_list(id, move_to)
     Repo.get(__MODULE__, id)
     |> Repo.delete
   end
 
-  def fetch_by_board board_id do
+  def fetch_by_board(board_id) do
     all()
     |> by(board_id: board_id) 
     |> Repo.all

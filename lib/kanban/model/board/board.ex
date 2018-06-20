@@ -25,7 +25,7 @@ defmodule Kanban.Model.Board do
     @required_fields ++ @optional_fields
   end
 
-  def add_default_lists board_id do
+  def add_default_lists(board_id) do
     Model.List.create(%{
       "board_id" => board_id,
       "title" => "TODO",
@@ -43,7 +43,7 @@ defmodule Kanban.Model.Board do
     })
   end
 
-  def create attrs do
+  def create(attrs) do
     command_result = %__MODULE__{}
     |> cast(attrs, updatable_fields())
     |> validate_required(@required_fields)
@@ -56,7 +56,7 @@ defmodule Kanban.Model.Board do
     command_result
   end
 
-  def update id, attrs do
+  def update(id, attrs) do
     Repo.get(__MODULE__, id)
     |> cast(attrs, updatable_fields())
     |> validate_required(@required_fields)
@@ -64,12 +64,12 @@ defmodule Kanban.Model.Board do
     |> Repo.update
   end
 
-  def delete id do
+  def delete(id) do
     Repo.get(__MODULE__, id)
     |> Repo.delete
   end
 
-  def change_position model, attrs do
+  def change_position(model, attrs) do
     query_context = all()
     Position.set model, query_context, attrs
   end

@@ -29,7 +29,7 @@ defmodule Kanban.Model.Card do
     @required_fields ++ @optional_fields
   end
 
-  def create attrs do
+  def create(attrs) do
     %__MODULE__{}
     |> cast(attrs, updatable_fields())
     |> validate_required(@required_fields)
@@ -37,7 +37,7 @@ defmodule Kanban.Model.Card do
     |> Repo.insert
   end
 
-  def update id, attrs do
+  def update(id, attrs) do
     Repo.get(__MODULE__, id)
     |> cast(attrs, updatable_fields())
     |> change_position(attrs)
@@ -45,7 +45,7 @@ defmodule Kanban.Model.Card do
     |> Repo.update
   end
 
-  def move_to_list from_list, to_list do
+  def move_to_list(from_list, to_list) do
     Repo.update_all(
       from(c in __MODULE__) |> by_list(from_list),
       set: [list_id: to_list]
@@ -57,7 +57,7 @@ defmodule Kanban.Model.Card do
     |> Repo.delete
   end
 
-  def change_position model, attrs do
+  def change_position(model, attrs) do
     list_id = Map.get(attrs, "list_id") || get_field(model, :list_id, 0)
     query_context = all() |> by_list(list_id)
     Position.set model, query_context, attrs
