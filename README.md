@@ -1,7 +1,10 @@
 # Kanban
 
-Front-End Application:
+### Frontend
 https://github.com/allangomessl/kanban-react
+
+### Similar Backends
+- https://github.com/allangomessl/kanban-ruby
 
 To start your Phoenix server:
 
