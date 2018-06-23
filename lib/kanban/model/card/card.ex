@@ -1,5 +1,5 @@
 defmodule Kanban.Model.Card do
-  use Ecto.Schema
+  use Kanban, :model
   import Ecto.Changeset
   import Ecto.Query
   import Kanban.Model.Card.Query

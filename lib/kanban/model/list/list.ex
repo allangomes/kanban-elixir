@@ -1,5 +1,5 @@
 defmodule Kanban.Model.List do
-  use Ecto.Schema
+  use Kanban, :model
   import Ecto.Changeset
   import Kanban.Model.List.Query
   alias Kanban.Model
