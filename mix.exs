@@ -41,6 +41,7 @@ defmodule Kanban.Mixfile do
       {:cowboy, "~> 1.0"},
       {:cors_plug, "~> 1.5"},
       {:proper_case, "~> 1.2"},
+      {:ecto_ranked, "~> 0.2"},
     ]
   end
 

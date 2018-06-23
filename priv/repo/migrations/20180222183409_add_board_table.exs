@@ -1,5 +1,5 @@
 defmodule Kanban.Repo.Migrations.AddBoardTable do
-  use Ecto.Migration
+  use Kanban, :migration
 
   def change do
     create table(:board) do
@@ -8,7 +8,7 @@ defmodule Kanban.Repo.Migrations.AddBoardTable do
       add :position, :integer
       add :color, :string
 
-      timestamps()
+      timestamps(inserted_at: :created_at)
     end
   end
 end

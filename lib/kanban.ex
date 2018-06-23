@@ -13,6 +13,13 @@ defmodule Kanban do
     end
   end
 
+  def migration do
+    quote do
+      use Ecto.Migration
+      @timestamps_opts inserted_at: :created_at
+    end
+  end
+
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])
   end

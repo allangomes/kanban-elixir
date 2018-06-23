@@ -5,11 +5,11 @@ defmodule KanbanWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", KanbanWeb do
+  scope "/", KanbanWeb do
     pipe_through :api
 
-    resources "/board", BoardController
-    resources "/board/:board_id/list", ListController
-    resources "/board/:board_id/card", CardController
+    resources "/boards", BoardController
+    resources "/boards/:board_id/lists", ListController
+    resources "/boards/:board_id/cards", CardController
   end
 end

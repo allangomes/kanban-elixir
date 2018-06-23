@@ -1,5 +1,5 @@
 defmodule Kanban.Repo.Migrations.AddCardTable do
-  use Ecto.Migration
+  use Kanban, :migration
 
   def change do
     create table(:card) do
@@ -11,7 +11,7 @@ defmodule Kanban.Repo.Migrations.AddCardTable do
       add :list_id, references(:list, on_delete: :delete_all)
       add :tag_list, {:array, :string}
 
-      timestamps()
+      timestamps(inserted_at: :created_at)
     end
   end
 end
